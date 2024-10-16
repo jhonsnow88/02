@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Casamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            transition: background-color 0.5s ease;
+        }
+
+        #nao {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #heart {
+            display: none;
+            font-size: 100px;
+            color: red;
+            margin-top: 20px;
+        }
+
+        #resposta {
+            font-size: 36px; /* Tamanho maior para a mensagem */
+            color: green;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #contador {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Amanda Almeida Ribeiro, você aceita se casar comigo?</h1>
+    
+    <button id="sim">Sim</button>
+    <button id="nao">Não</button>
+
+    <p id="resposta"></p>
+    <p id="contador">Você clicou em "Não" <span id="contagem">0</span> vezes</p>
+    <div id="heart">❤️</div>
+
+    <script>
+        const botaoSim = document.getElementById("sim");
+        const botaoNao = document.getElementById("nao");
+        const resposta = document.getElementById("resposta");
+        const heart = document.getElementById("heart");
+        const contagem = document.getElementById("contagem");
+        let contadorNao = 0;
+
+        // Quando clicar no botão "Sim"
+        botaoSim.onclick = function() {
+            resposta.textContent = "Perfeito, irei comprar as alianças!";
+            document.body.style.backgroundColor = "#f1c40f"; // Mudar cor de fundo
+            heart.style.display = "block"; // Exibir coração
+        };
+
+        // Quando clicar no botão "Não"
+        botaoNao.onclick = function() {
+            // Muda a posição do botão "Não"
+            const x = Math.random() * (window.innerWidth - 50); // Menos 50 para evitar sair da tela
+            const y = Math.random() * (window.innerHeight - 50);
+            botaoNao.style.left = `${x}px`;
+            botaoNao.style.top = `${y}px`;
+
+            // Incrementa o contador de cliques no "Não"
+            contadorNao++;
+            contagem.textContent = contadorNao;
+
+            // Exibir mensagem especial após 3 cliques no "Não"
+            if (contadorNao === 3) {
+                resposta.textContent = "Aceita logo besta kkkk";
+            }
+        };
+    </script>
+
+</body>
+</html>
